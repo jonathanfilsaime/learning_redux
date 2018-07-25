@@ -8,7 +8,7 @@ export function addNote(note){
 }
 
 export function addUser(user){
-    return{
+    return {
         type: C.ADD_USER,
         payload: user
     }

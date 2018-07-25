@@ -1,5 +1,6 @@
 import appReducer from './reducers'
 import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk';
 
 const updateLogs = store => next => action => {
 
@@ -22,5 +23,5 @@ const updateLogs = store => next => action => {
 }
 
 export default (initialState = {}) => {
-    return applyMiddleware(updateLogs)(createStore)(appReducer,initialState)
+    return applyMiddleware(updateLogs, thunk)(createStore)(appReducer,initialState)
 }

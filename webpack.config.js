@@ -1,21 +1,27 @@
-var webpack = require("webpack");
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-    entry: __dirname + "/src/index.js",
-    output: {
-        path: __dirname + "/dist/assets",
-        filename: "bundle.js",
-        publicPath: "assets"
-    },
-    devServer: {
-        inline: true,
-        contentBase: __dirname + "/dist",
-        port: 3000
-    },
-    module: {
-        rules: [{
-            test: /\.js$/,
-            loader: ["babel-loader"],
-        }]
-    }
+  devServer: {
+    stats: 'errors-only'
+  },
+  entry: './src/index.js',
+  output: {
+      path: path.resolve('dist'),
+      filename: 'bundle.js',
+      publicPath: '/'
+  },
+  mode: 'development',
+  module: {
+      rules: [
+          {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
+          {test: /\.css$/, loader: 'style-loader'},
+          {test: /\.css$/, loader: 'css-loader'},
+          {test: /\.(png|jpg|gif)$/, loader: 'url-loader'}
+      ]
+  },
+  // Remove this for info about perforamce(i.e bundle size)
+  performance : {
+    hints : false
+  }
 }
